@@ -1,0 +1,15 @@
+torch
+torchvision
+ultralytics
+sahi
+albumentations
+roboflow
+pyinaturalist
+requests
+PyYAML
+jupyter
+pandas
+matplotlib
+seaborn
+tqdm
+wandb

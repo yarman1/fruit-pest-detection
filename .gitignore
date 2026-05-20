@@ -1,0 +1,76 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# uv
+.uv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# PyCharm
+.idea/
+
+# Project data
+data/
+runs/
+models/
+
+# ML / experiment artifacts
+wandb/
+mlruns/
+*.pt
+*.onnx
+*.engine
+*.tflite
+*.torchscript
+
+# Logs
+logs/
+*.log
+
+# Generated report artifacts
+report/figures/
+report/*.docx
+report/*.pptx
+report/*.pdf
+report/sahi_experiment
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Pipeline testing artifacts
+pipeline/output_test_images*

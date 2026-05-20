@@ -1,0 +1,242 @@
+# ──────────────────────────────────────────────
+# Породи дерев
+# ──────────────────────────────────────────────
+trees:
+  apple:
+    name_uk: "Яблуня"
+    name_lat: "Malus domestica Borkh."
+  pear:
+    name_uk: "Груша звичайна"
+    name_lat: "Pyrus communis L."
+  plum:
+    name_uk: "Слива домашня"
+    name_lat: "Prunus domestica L."
+  sour_cherry:
+    name_uk: "Вишня звичайна"
+    name_lat: "Prunus cerasus L."
+  sweet_cherry:
+    name_uk: "Черешня"
+    name_lat: "Prunus avium L."
+  apricot:
+    name_uk: "Абрикос звичайний"
+    name_lat: "Prunus armeniaca L."
+
+leaf_sources:
+  inaturalist_taxa:
+    - taxon: "Malus domestica"
+      key: "apple"
+    - taxon: "Pyrus communis"
+      key: "pear"
+    - taxon: "Prunus domestica"
+      key: "plum"
+    - taxon: "Prunus cerasus"
+      key: "sour_cherry"
+    - taxon: "Prunus avium"
+      key: "sweet_cherry"
+    - taxon: "Prunus armeniaca"
+      key: "apricot"
+  max_per_taxon: 300
+  place_id: 97391        # Європа
+  date_max: "2024-12-31"
+# ──────────────────────────────────────────────
+# Model A — детектор листя (1 клас)
+# ──────────────────────────────────────────────
+leaf_classes:
+  - id: 0
+    key: "leaf"
+    name_uk: "Листок"
+
+# ──────────────────────────────────────────────
+# Model B — детектор шкідників
+# 10 видів + healthy = 11 класів
+# ──────────────────────────────────────────────
+pest_classes:
+
+  # ── Tier 1 (ядро) ──
+
+  - id: 0
+    key: "codling_moth"
+    name_uk: "Яблунева плодожерка"
+    name_lat: "Cydia pomonella"
+    tier: 1
+    affects: [apple, pear, plum, apricot]
+    inaturalist_taxon: "Cydia pomonella"
+    search_queries:
+      - "codling moth"
+      - "Cydia pomonella"
+      - "яблунева плодожерка"
+
+  - id: 1
+    key: "gypsy_moth"
+    name_uk: "Непарний шовкопряд"
+    name_lat: "Lymantria dispar"
+    tier: 1
+    affects: [apple, pear, plum, sour_cherry, sweet_cherry, apricot]
+    inaturalist_taxon: "Lymantria dispar"
+    search_queries:
+      - "gypsy moth"
+      - "spongy moth"
+      - "Lymantria dispar"
+      - "непарний шовкопряд"
+
+  - id: 2
+    key: "fall_webworm"
+    name_uk: "Американський білий метелик"
+    name_lat: "Hyphantria cunea"
+    tier: 1
+    affects: [apple, pear, plum, sour_cherry, sweet_cherry, apricot]
+    inaturalist_taxon: "Hyphantria cunea"
+    search_queries:
+      - "fall webworm"
+      - "Hyphantria cunea"
+      - "американський білий метелик"
+
+  - id: 3
+    key: "apple_ermine_moth"
+    name_uk: "Яблунева горностаєва моль"
+    name_lat: "Yponomeuta malinellus"
+    tier: 1
+    affects: [apple]
+    inaturalist_taxon: "Yponomeuta malinellus"
+    search_queries:
+      - "apple ermine moth"
+      - "Yponomeuta malinellus"
+      - "яблунева моль"
+      - "горностаєва моль"
+
+  - id: 4
+    key: "plum_fruit_moth"
+    name_uk: "Сливова плодожерка"
+    name_lat: "Cydia funebrana"
+    tier: 1
+    affects: [plum, apricot]
+    inaturalist_taxon: "Cydia funebrana"
+    search_queries:
+      - "plum fruit moth"
+      - "Cydia funebrana"
+      - "Grapholita funebrana"
+      - "сливова плодожерка"
+
+  # ── Tier 2 ──
+
+  - id: 5
+    key: "cherry_fruit_fly"
+    name_uk: "Вишнева муха"
+    name_lat: "Rhagoletis cerasi"
+    tier: 2
+    affects: [sour_cherry, sweet_cherry]
+    inaturalist_taxon: "Rhagoletis cerasi"
+    search_queries:
+      - "European cherry fruit fly"
+      - "cherry fruit fly"
+      - "Rhagoletis cerasi"
+      - "вишнева муха"
+
+  - id: 6
+    key: "lackey_moth"
+    name_uk: "Кільчастий шовкопряд"
+    name_lat: "Malacosoma neustria"
+    tier: 2
+    affects: [apple, pear, plum, sour_cherry, sweet_cherry, apricot]
+    inaturalist_taxon: "Malacosoma neustria"
+    search_queries:
+      - "lackey moth"
+      - "Malacosoma neustria"
+      - "кільчастий шовкопряд"
+
+  - id: 7
+    key: "brown_marmorated_stink_bug"
+    name_uk: "Коричнево-мармуровий клоп"
+    name_lat: "Halyomorpha halys"
+    tier: 2
+    affects: [apple, pear, plum, sour_cherry, sweet_cherry, apricot]
+    inaturalist_taxon: "Halyomorpha halys"
+    search_queries:
+      - "brown marmorated stink bug"
+      - "BMSB"
+      - "Halyomorpha halys"
+      - "коричнево-мармуровий клоп"
+      - "мармуровий клоп"
+
+  - id: 8
+    key: "apple_blossom_weevil"
+    name_uk: "Яблуневий квіткоїд"
+    name_lat: "Anthonomus pomorum"
+    tier: 2
+    affects: [apple]
+    inaturalist_taxon: "Anthonomus pomorum"
+    search_queries:
+      - "apple blossom weevil"
+      - "Anthonomus pomorum"
+      - "яблуневий квіткоїд"
+
+  - id: 9
+    key: "winter_moth"
+    name_uk: "Зимовий п'ядок"
+    name_lat: "Operophtera brumata"
+    tier: 2
+    affects: [apple, pear, plum, sour_cherry, sweet_cherry, apricot]
+    inaturalist_taxon: "Operophtera brumata"
+    search_queries:
+      - "winter moth"
+      - "Operophtera brumata"
+      - "зимовий п'ядок"
+
+  # ── Базовий клас ──
+
+  - id: 10
+    key: "healthy"
+    name_uk: "Здорове листя"
+    name_lat: ~
+    tier: 1
+    affects: [apple, pear, plum, sour_cherry, sweet_cherry, apricot]
+    inaturalist_taxon: ~
+    search_queries: []
+
+# ──────────────────────────────────────────────
+# Конфіг джерел даних
+# ──────────────────────────────────────────────
+data_sources:
+
+  inaturalist:
+    place_id_train: 97391
+    place_id_test:  97391
+    quality_grade: "research"
+    photo_license:
+      - "cc-by"
+      - "cc-by-sa"
+      - "cc0"
+    train_date_max: "2024-12-31"
+    test_date_min:  "2025-01-01"
+    test_fallback_threshold: 50
+
+  ip102:
+    path: "data/raw/ip102"
+    class_mapping: {}
+
+  roboflow:
+    workspace: ~
+    projects: []
+
+  kaggle:
+    datasets: []
+
+  wikimedia:
+    categories:
+      - "Category:Cydia pomonella"
+      - "Category:Lymantria dispar"
+      - "Category:Hyphantria cunea"
+      - "Category:Yponomeuta malinellus"
+      - "Category:Cydia funebrana"
+      - "Category:Rhagoletis cerasi"
+      - "Category:Malacosoma neustria"
+      - "Category:Halyomorpha halys"
+      - "Category:Anthonomus pomorum"
+      - "Category:Operophtera brumata"
+# ──────────────────────────────────────────────
+# Пороги та параметри
+# ──────────────────────────────────────────────
+thresholds:
+  min_samples_per_class: 150
+  train_val_split: 0.85
+  random_seed: 42
